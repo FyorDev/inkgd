@@ -1,5 +1,5 @@
 # ############################################################################ #
-# Copyright © 2019-2022 Frédéric Maquin <fred@ephread.com>
+# Copyright © 2019-2023 Frédéric Maquin <fred@ephread.com>
 # All Rights Reserved
 #
 # This file is part of inkgd.
@@ -12,19 +12,17 @@ extends "res://addons/gut/test.gd"
 # Imports
 # ############################################################################ #
 
-var InkRuntime = load("res://addons/inkgd/runtime.gd")
-var Story = load("res://addons/inkgd/runtime/story.gd")
+var InkRuntimeManager = load("res://addons/inkgd/ink_runtime_manager.gd")
 
 # ############################################################################ #
 
 var ink_runtime
 
-func before_all():
-	InkRuntime.init(get_tree().root, false)
-	ink_runtime = get_tree().root.get_node("__InkRuntime")
+func before_each():
+	ink_runtime = InkRuntimeManager.init(get_tree().root, false)
 
-func after_all():
-	InkRuntime.deinit(get_tree().root)
+func after_each():
+	InkRuntimeManager.deinit(get_tree().root)
 	ink_runtime = null
 
 # ############################################################################ #
@@ -33,11 +31,11 @@ func load_resource(file_name: String) -> Resource:
 	return load("res://test/fixture/compiled/%s/%s.ink.json" % [_prefix(), file_name])
 
 func load_file(file_name: String) -> String:
-	var data_file = File.new()
 	var path = "res://test/fixture/compiled/%s/%s.ink.json" % [_prefix(), file_name]
 
+	var data_file = FileAccess.open(path, FileAccess.READ)
 	assert(
-			data_file.open(path, File.READ) == OK,
+			 FileAccess.get_open_error() == OK,
 			"Could not load '%s'" % path
 	)
 

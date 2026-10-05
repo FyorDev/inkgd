@@ -1,6 +1,6 @@
 # warning-ignore-all:return_value_discarded
 # ############################################################################ #
-# Copyright © 2019-2022 Frédéric Maquin <fred@ephread.com>
+# Copyright © 2019-2023 Frédéric Maquin <fred@ephread.com>
 # Licensed under the MIT License.
 # See LICENSE in the project root for license information.
 # ############################################################################ #
@@ -14,7 +14,6 @@ extends Node
 # Imports
 # ############################################################################ #
 
-var ErrorType := preload("res://addons/inkgd/runtime/enums/error.gd").ErrorType
 var InkPlayerFactory := preload("res://addons/inkgd/ink_player_factory.gd") as GDScript
 var InkGDProfiler := preload("res://examples/scenes/common/profiler.gd") as GDScript
 
@@ -27,7 +26,7 @@ var _ink_player = InkPlayerFactory.create()
 var _profiler: InkGDProfiler = InkGDProfiler.new()
 var _current_story_index: int = -1
 
-var _creation_results: PoolStringArray = ["Created stories:"]
+var _creation_results: PackedStringArray = ["Created stories:"]
 var _stories: Array = [
 	"res://test/performance/ink/ipsuminious.1.ink.json",
 	"res://test/performance/ink/ipsuminious.6.ink.json",
@@ -39,9 +38,9 @@ var _stories: Array = [
 # Node
 # ############################################################################ #
 
-onready var _created_label = $MarginContainer/CenterContainer/Label
-onready var _loading_label = $LoadingAnimationPlayer/CenterContainer/VBoxContainer/Label
-onready var _loading_animation_player = $LoadingAnimationPlayer
+@onready var _created_label = $MarginContainer/CenterContainer/Label
+@onready var _loading_label = $LoadingAnimationPlayer/CenterContainer/VBoxContainer/Label
+@onready var _loading_animation_player = $LoadingAnimationPlayer
 
 
 # ############################################################################ #
@@ -51,7 +50,7 @@ onready var _loading_animation_player = $LoadingAnimationPlayer
 func _ready():
 	add_child(_ink_player)
 
-	_ink_player.connect("loaded", self, "_loaded")
+	_ink_player.connect("loaded", Callable(self, "_loaded"))
 	_current_story_index = 0
 
 	_create_story()
@@ -97,7 +96,7 @@ func _create_story():
 	_ink_player.create_story()
 
 func _end():
-	_created_label.text = _creation_results.join("\n")
+	_created_label.text = "\n".join(_creation_results)
 	_created_label.show()
 
 	remove_child(_loading_animation_player)

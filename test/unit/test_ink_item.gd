@@ -1,5 +1,5 @@
 # ############################################################################ #
-# Copyright © 2019-2022 Frédéric Maquin <fred@ephread.com>
+# Copyright © 2019-2023 Frédéric Maquin <fred@ephread.com>
 # All Rights Reserved
 #
 # This file is part of inkgd.
@@ -11,8 +11,6 @@ extends "res://addons/gut/test.gd"
 # ############################################################################ #
 # Imports
 # ############################################################################ #
-
-var InkListItem = load("res://addons/inkgd/runtime/lists/structs/ink_list_item.gd")
 
 func test_serialisation():
 	var list_item = InkListItem.new_with_origin_name("foo", "bar")

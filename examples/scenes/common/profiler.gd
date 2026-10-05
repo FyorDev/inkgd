@@ -1,10 +1,10 @@
 # ############################################################################ #
-# Copyright © 2019-2022 Frédéric Maquin <fred@ephread.com>
+# Copyright © 2019-2023 Frédéric Maquin <fred@ephread.com>
 # Licensed under the MIT License.
 # See LICENSE in the project root for license information.
 # ############################################################################ #
 
-extends Reference
+extends RefCounted
 
 class_name InkGDProfiler
 
@@ -12,7 +12,7 @@ class_name InkGDProfiler
 # Properties
 # ############################################################################ #
 
-var milliseconds_elaspsed: int setget , get_milliseconds_elaspsed
+var milliseconds_elaspsed: int: get = get_milliseconds_elaspsed
 func get_milliseconds_elaspsed():
 	if _start_time == -1 || _end_time == -1:
 		return 0
@@ -33,11 +33,11 @@ var _end_time: int = -1
 # ############################################################################ #
 
 func start():
-	_start_time = OS.get_ticks_msec()
+	_start_time = Time.get_ticks_msec()
 
 
 func stop():
-	_end_time = OS.get_ticks_msec()
+	_end_time = Time.get_ticks_msec()
 
 
 func reset():
