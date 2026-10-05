@@ -1,16 +1,25 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1pg6wbhb6kpu"]
+[gd_scene format=3 uid="uid://d1pg6wbhb6kpu"]
 
-[ext_resource type="Texture2D" uid="uid://dkptw8v3mdq0a" path="res://examples/images/buttons/button_normal.png" id="1"]
-[ext_resource type="FontFile" uid="uid://dufnga6bbboge" path="res://examples/fonts/Vollkorn-Regular.ttf" id="2"]
-[ext_resource type="Texture2D" uid="uid://bn0ybt8mhl7oa" path="res://examples/images/buttons/button_focus_hover.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://igrwx4dfiigr" path="res://examples/images/buttons/button_pressed.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://vbw47oref5kt" path="res://examples/images/buttons/button_disabled.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://bd0fo8x8wpwlo" path="res://examples/images/inkgd.png" id="6"]
-[ext_resource type="Script" path="res://examples/scenes/main.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://lamg2gqmim1m" path="res://examples/images/buttons/button_normal.png" id="1"]
+[ext_resource type="FontFile" uid="uid://fih5reitqrc0" path="res://examples/fonts/Vollkorn-Regular.ttf" id="2"]
+[ext_resource type="Texture2D" uid="uid://cqdmcdv8wbdhy" path="res://examples/images/buttons/button_focus_hover.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://behmkv51vdsmu" path="res://examples/images/buttons/button_pressed.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://8f56m354gccp" path="res://examples/images/buttons/button_disabled.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b6ty4co451tjx" path="res://examples/images/inkgd.png" id="6"]
+[ext_resource type="Script" uid="uid://bkmgcr48rjspl" path="res://examples/scenes/main.gd" id="7"]
 [ext_resource type="FontFile" path="res://examples/fonts/Poppins-Medium.tres" id="8"]
 
 [sub_resource type="FontFile" id="7"]
 fallbacks = Array[Font]([ExtResource("2")])
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -87,7 +96,7 @@ Button/styles/hover = SubResource("5")
 Button/styles/normal = SubResource("2")
 Button/styles/pressed = SubResource("6")
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" unique_id=1411081727]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,13 +105,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1104268329]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.929412, 0.898039, 0.854902, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=219435883]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -111,65 +120,65 @@ theme_override_constants/margin_top = 75
 theme_override_constants/margin_right = 75
 theme_override_constants/margin_bottom = 75
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer" unique_id=13658016]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=81615723]
 layout_mode = 2
 theme_override_constants/separation = 150
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=2000523459]
 layout_mode = 2
 texture = ExtResource("6")
 stretch_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=909819952]
 layout_mode = 2
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="ExampleVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ExampleVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1681911717]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ExampleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer"]
+[node name="ExampleLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer" unique_id=1477567023]
 layout_mode = 2
 theme = SubResource("8")
 text = "Examples"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer" unique_id=1219686305]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="TheIntercept" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer/VBoxContainer"]
+[node name="TheIntercept" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer/VBoxContainer" unique_id=1782863865]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = SubResource("3")
 text = "The Intercept"
 
-[node name="CrimeScene" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer/VBoxContainer"]
+[node name="CrimeScene" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/ExampleVBoxContainer/VBoxContainer" unique_id=1424809967]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = SubResource("3")
 text = "Crime Scene"
 
-[node name="TestVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TestVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=62161364]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TestLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer"]
+[node name="TestLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer" unique_id=1401753314]
 layout_mode = 2
 theme = SubResource("8")
 text = "Tests"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer" unique_id=705948498]
 layout_mode = 2
 theme_override_constants/separation = 25
 
-[node name="Performance" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer/HBoxContainer"]
+[node name="Performance" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/TestVBoxContainer/HBoxContainer" unique_id=2082046953]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = SubResource("3")
