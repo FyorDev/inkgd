@@ -38,14 +38,33 @@ func cast(new_type, metadata = null):
 		return InkIntValue.new_with(int(value))
 
 	if new_type == Ink.ValueType.STRING:
-		return InkStringValue.new_with(str(value)) # TODO: Check formating
+		return InkStringValue.new_with(_float_to_string(value))
 
 	InkUtils.throw_story_exception(bad_cast_exception_message(new_type), false, metadata)
 	return null
 
+# Mirrors upstream's `FloatValue.ToString()`, which formats with
+# `value.ToString(InvariantCulture)`. Because upstream stores a single-precision
+# float, whole numbers render without a trailing ".0" (e.g. 15.0 -> "15").
+# Godot's `str(float)` always keeps the ".0", so it's stripped here for integral
+# values. This overrides `InkValue._to_string()`, which is the path used when
+# floats are rendered into the output stream.
+func _to_string() -> String:
+	return _float_to_string(value)
+
 # ######################################################################## #
 # GDScript extra methods
 # ######################################################################## #
+
+# String manipulation (rather than `int(value)`) is used to strip the trailing
+# ".0" so that large whole floats (e.g. 1e20) don't overflow int64. Godot never
+# emits scientific notation for these, so there's no ".0" embedded in an
+# exponent to mishandle.
+static func _float_to_string(float_value: float) -> String:
+	var string_value := str(float_value)
+	if string_value.ends_with(".0"):
+		return string_value.substr(0, string_value.length() - 2)
+	return string_value
 
 func is_ink_class(type):
 	return type == "FloatValue" || super.is_ink_class(type)
