@@ -8,6 +8,10 @@
 
 Implementation of [inkle’s Ink] in pure GDScript, with editor support.
 
+> [!IMPORTANT]
+> _inkgd_ is compatible with Godot 4.2+, but has no official releases yet.
+> To use _inkgd_ with Godot 4.2+, fetch the [`godot4`] branch.
+
 > [!NOTE]
 > _inkgd_ shines for rapid prototyping in GDScript and small games.
 > While the runtime implementation is feature-complete and passes the
@@ -36,6 +40,7 @@ Implementation of [inkle’s Ink] in pure GDScript, with editor support.
   * [Acknowledgement](#acknowledgement)
       * [Code](#code)
       * [Ink Stories](#ink-stories)
+  * [Sponsors](#sponsors)
   * [License](#license)
 
 ## Features
