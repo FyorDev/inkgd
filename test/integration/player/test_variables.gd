@@ -124,6 +124,14 @@ func test_observe_variables() -> void:
 	assert_eq(_string_variable_observer_call_count, 1)
 	assert_eq(_default_variable_observers_call_count, 4 if self._can_run_mono() else 3)
 
+	# Registering the same observer for "aBoolean" twice (via observe_variables
+	# then observe_variable) is intentional here — see the class comment. On the
+	# GDScript runtime this triggers an engine error for the duplicate connection;
+	# consume it so GUT's error tracker (9.5+) doesn't fail the test. The mono
+	# runtime handles the duplicate without emitting that engine error.
+	if not _can_run_mono():
+		assert_engine_error("Signal 'variable_changed' is already connected")
+
 
 func test_remove_observer() -> void:
 	await _load_story("variables")

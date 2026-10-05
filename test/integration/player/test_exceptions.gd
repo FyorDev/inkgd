@@ -39,6 +39,12 @@ func test_that_exception_is_received() -> void:
 
 	assert_gt(_exception_messages_raised.size(), 0)
 	assert_eq(_exception_messages_raised[0], "EXCEPTION: Cannot destroy default flow")
+	# On the GDScript runtime, inkgd reports exceptions via push_error; consume it
+	# so GUT's error tracker (9.5+) doesn't fail this deliberately-triggered error.
+	# The mono/C# runtime surfaces the same error only through the
+	# `exception_raised` signal (asserted above), not push_error.
+	if not _can_run_mono():
+		assert_push_error("Cannot destroy default flow")
 
 
 func test_that_argument_exception_is_received() -> void:
@@ -49,6 +55,8 @@ func test_that_argument_exception_is_received() -> void:
 
 	assert_gt(_exception_messages_raised.size(), 0)
 	assert_true(_exception_messages_raised[0].find("ARGUMENT EXCEPTION: ink arguments when calling EvaluateFunction / ChoosePathStringWithParameters must be") != -1)
+	if not _can_run_mono():
+		assert_push_error("ARGUMENT EXCEPTION: ink arguments when calling EvaluateFunction / ChoosePathStringWithParameters must be")
 
 
 func test_that_story_exception_is_received() -> void:
@@ -67,6 +75,8 @@ func test_that_external_story_exception_is_received() -> void:
 
 	assert_gt(_exception_messages_raised.size(), 0)
 	assert_eq(_exception_messages_raised[0], "STORY EXCEPTION: Cannot assign to a variable (non_existing_variable) that hasn't been declared in the story")
+	if not _can_run_mono():
+		assert_push_error("Cannot assign to a variable (non_existing_variable)")
 
 
 # ############################################################################ #
